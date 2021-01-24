@@ -8,3 +8,9 @@ env
 lightning_logs
 .ckpt
 example.ckpt
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# IPython
+profile_default/
+ipython_config.py
