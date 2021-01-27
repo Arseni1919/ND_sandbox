@@ -11,4 +11,5 @@ fig.update_layout(title='Mt Bruno Elevation', autosize=False,
                   width=500, height=500,
                   margin=dict(l=85, r=90, b=75, t=100))
 
+# fig.write_html('here.html')
 fig.show()
