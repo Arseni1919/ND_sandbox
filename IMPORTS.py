@@ -4,6 +4,7 @@ from mpl_toolkits.mplot3d import Axes3D # noqa: F401 unused import
 import pandas as pd
 import plotly.graph_objects as go
 import cufflinks as cf
+import sklearn
 # import chart_studio.plotly as py
 import seaborn as sns
 import plotly.express as px
