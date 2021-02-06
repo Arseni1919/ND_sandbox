@@ -16,3 +16,4 @@ example.ckpt
 # IPython
 profile_default/
 ipython_config.py
+config.py

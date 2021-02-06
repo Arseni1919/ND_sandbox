@@ -5,6 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import cufflinks as cf
 import sklearn
+from sklearn import preprocessing
 # import chart_studio.plotly as py
 import seaborn as sns
 import plotly.express as px
@@ -31,6 +32,7 @@ import random
 toy_data = {'a': 1, 'b': 2}
 
 LR = 1e-2  # learning rate
-REPLAY_SIZE = 1600 # 10048
+REPLAY_SIZE = 1600  # 10048
 BATCH_SIZE = 16
 SCALE = 1.0
+WINDOW_TO_LOOK_BACK = 13
