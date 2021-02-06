@@ -26,8 +26,10 @@ from pytorch_lightning.callbacks import Callback
 from collections import namedtuple, deque
 import gym
 from pytorch_lightning.loggers.neptune import NeptuneLogger
-
+import random
 
 toy_data = {'a': 1, 'b': 2}
 
 LR = 1e-3  # learning rate
+REPLAY_SIZE = 10000
+SCALE = 50

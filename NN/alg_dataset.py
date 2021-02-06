@@ -1,0 +1,28 @@
+from IMPORTS import *
+from y_func import y_func
+
+
+class ALGDataset(Dataset):
+    def __init__(self, func):
+        self.func = func
+        self.buffer = deque(maxlen=REPLAY_SIZE)
+        for i in range(REPLAY_SIZE):
+            x_num = random.uniform(0, SCALE)
+            y_num = random.uniform(0, SCALE)
+            z_num = self.func(x_num, y_num)
+            obs_x = torch.Tensor([x_num / 100.0, y_num / 100.0])
+            obs = (obs_x, z_num)
+            self.buffer.append(obs)
+
+    def __len__(self):
+        return len(self.buffer)
+
+    def __getitem__(self, indx):
+        z_num = self.buffer[indx]
+        return z_num
+
+    def append(self, new_z):
+        self.buffer.append(new_z)
+
+
+alg_dataset = ALGDataset(y_func)
