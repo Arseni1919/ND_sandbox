@@ -10,8 +10,8 @@ class ALGDataset(Dataset):
             x_num = random.uniform(0, SCALE)
             y_num = random.uniform(0, SCALE)
             z_num = self.func(x_num, y_num)
-            obs_x = torch.Tensor([x_num / 100.0, y_num / 100.0])
-            obs = (obs_x, z_num)
+            obs_xy = torch.Tensor([x_num, y_num]).double()
+            obs = (obs_xy, z_num)
             self.buffer.append(obs)
 
     def __len__(self):

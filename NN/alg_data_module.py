@@ -6,13 +6,13 @@ class ALGDataModule(pl.LightningDataModule):
 
     def __init__(self, alg_dataset):
         super().__init__()
-        self.alg_dataset=alg_dataset
+        self.alg_dataset = alg_dataset
 
     def setup(self, stage=None):
         pass
 
     def train_dataloader(self):
-        return DataLoader(self.alg_dataset, batch_size=64)
+        return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE)
 
     def val_dataloader(self):
         pass
@@ -21,5 +21,4 @@ class ALGDataModule(pl.LightningDataModule):
         pass
 
 
-data_module = ALGDataModule(alg_dataset)
-
+alg_data_module = ALGDataModule(alg_dataset)

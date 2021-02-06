@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D # noqa: F401 unused import
+from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 import pandas as pd
 import plotly.graph_objects as go
 import cufflinks as cf
@@ -30,6 +30,7 @@ import random
 
 toy_data = {'a': 1, 'b': 2}
 
-LR = 1e-3  # learning rate
-REPLAY_SIZE = 10000
-SCALE = 50
+LR = 1e-2  # learning rate
+REPLAY_SIZE = 1600 # 10048
+BATCH_SIZE = 16
+SCALE = 1.0

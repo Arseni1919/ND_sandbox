@@ -16,3 +16,9 @@ class ALGCallback(Callback):
     def on_train_epoch_end(self, trainer, pl_module, outputs):
         """Called when the train epoch ends."""
         pass
+
+    def on_train_batch_start(self, trainer, pl_module, batch, batch_idx, dataloader_idx):
+        # print('--- print batch ---')
+        # for i in batch:
+        #     print(i)
+        pass
