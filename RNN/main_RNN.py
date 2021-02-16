@@ -6,7 +6,7 @@ from alg_data_module import *
 
 if __name__ == '__main__':
     trainer = pl.Trainer(logger=NeptuneLogger(project_name="1919ars/NA-sandbox"),
-                         max_epochs=10,
+                         max_epochs=1,
                          callbacks=[ALGCallback()])
     trainer.fit(model=alg_lit_module, datamodule=alg_data_module)
 

@@ -6,9 +6,7 @@ class ALGDataset(Dataset):
         self.func = func
         self.buffer = deque(maxlen=REPLAY_SIZE)
         for i in range(REPLAY_SIZE):
-            x_num = random.uniform(0, SCALE)
-            y_num = random.uniform(0, SCALE)
-            z_num = self.func(x_num, y_num)
+            x_num, y_num, z_num = self.func(i)
             obs_xy = torch.Tensor([x_num, y_num]).double()
             obs = (obs_xy, z_num)
             self.buffer.append(obs)

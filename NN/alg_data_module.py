@@ -11,8 +11,8 @@ class ALGDataModule(pl.LightningDataModule):
         pass
 
     def train_dataloader(self):
-        # return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=4)
-        return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=8)
+        return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=4)
+        # return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=8)
 
     def val_dataloader(self):
         pass
