@@ -58,6 +58,10 @@ def compare_graphs(func_hat, func_real, compare: bool =True):
         fig.show()
 
 
+def compare_stock_graphs(alg_lit_module):
+    pass
+
+
 if __name__ == '__main__':
 
     compare_graphs(func_hat=lambda x, y=0 : torch.Tensor([0]), func_real=y_func, compare=False)

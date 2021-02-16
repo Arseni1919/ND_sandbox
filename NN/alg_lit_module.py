@@ -1,17 +1,16 @@
 from IMPORTS import *
-from alg_dataset import alg_dataset
 
 
 class ALGLightningModule(pl.LightningModule):
 
-    def __init__(self):
+    def __init__(self, n_input, n_output):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Linear(2, 256),
+            nn.Linear(n_input, 256),
             nn.ReLU(),
             nn.Linear(256, 128),
             nn.ReLU(),
-            nn.Linear(128, 1),
+            nn.Linear(128, n_output),
 
         )
         self.net.double()
@@ -39,6 +38,6 @@ class ALGLightningModule(pl.LightningModule):
     #     return DataLoader(alg_dataset, batch_size=64)
 
 
-alg_lit_module = ALGLightningModule()
+
 
 

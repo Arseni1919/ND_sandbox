@@ -1,8 +1,15 @@
 from main_simple_nn import *
 
-model = ALGLightningModule()
-model.load_state_dict(torch.load("example.ckpt"))
-compare_graphs(model, y_func)
+# data = pd.read_csv('../data/real_data_2days_sample.csv')
+# print(len(data))
 
 # b = torch.tensor([[0, 1], [2, 3]])
 # print(torch.reshape(b, (-1,)))
+
+from alg_dataset import *
+
+sample_dataset = STOCKSDataset()
+alg_data_module = ALGDataModule(sample_dataset)
+a = sample_dataset.data['SPY'][779:780]
+for i in alg_data_module.train_dataloader():
+    print(i)
