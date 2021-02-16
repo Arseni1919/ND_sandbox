@@ -14,3 +14,5 @@ if __name__ == '__main__':
     model = ALGLightningModule()
     model.load_state_dict(torch.load("example.ckpt"))
     compare_graphs(model, y_func)
+
+#
