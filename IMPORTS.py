@@ -29,14 +29,16 @@ import gym
 from pytorch_lightning.loggers.neptune import NeptuneLogger
 import random
 
-toy_data = {'a': 1, 'b': 2}
+# toy_data = {'a': 1, 'b': 2}
 
-LR = 1e-2  # learning rate
+LR = 1e-3  # learning rate
 REPLAY_SIZE = 1600  # 10048
 BATCH_SIZE = 16
 SCALE = 1.0
 WINDOW_TO_LOOK_BACK = 13
 
 RNN_INPUT_SIZE = 2
+RNN_SEQ_LEN = 10
 RNN_OUTPUT_SIZE = 1
-RNN_HIDDEN_SIZE = 1
+RNN_HIDDEN_SIZE = 12
+RNN_NUM_LAYERS = 2

@@ -1,5 +1,5 @@
 from IMPORTS import *
-from alg_dataset import alg_dataset
+# from alg_dataset import alg_dataset
 
 
 class ALGDataModule(pl.LightningDataModule):
@@ -12,7 +12,7 @@ class ALGDataModule(pl.LightningDataModule):
         pass
 
     def train_dataloader(self):
-        return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=4)
+        return DataLoader(self.alg_dataset, batch_size=BATCH_SIZE, num_workers=1, shuffle=False)
 
     def val_dataloader(self):
         pass
@@ -21,4 +21,4 @@ class ALGDataModule(pl.LightningDataModule):
         pass
 
 
-alg_data_module = ALGDataModule(alg_dataset)
+

@@ -5,8 +5,12 @@ from alg_data_module import *
 
 
 if __name__ == '__main__':
+
+    alg_dataset = ALGDataset(y_func)
+    alg_data_module = ALGDataModule(alg_dataset)
+
     trainer = pl.Trainer(logger=NeptuneLogger(project_name="1919ars/NA-sandbox"),
-                         max_epochs=1,
+                         max_epochs=30,
                          callbacks=[ALGCallback()])
     trainer.fit(model=alg_lit_module, datamodule=alg_data_module)
 

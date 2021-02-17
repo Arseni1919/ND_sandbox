@@ -1,5 +1,4 @@
 from IMPORTS import *
-from alg_dataset import alg_dataset
 
 
 class RNN(nn.Module):
@@ -30,24 +29,37 @@ class ALGLightningModule(pl.LightningModule):
 
     def __init__(self):
         super().__init__()
-        self.net = RNN(input_size=RNN_INPUT_SIZE, hidden_size=RNN_HIDDEN_SIZE, output_size=RNN_OUTPUT_SIZE)
-        self.net.double()
+        # self.net = RNN(input_size=RNN_INPUT_SIZE, hidden_size=RNN_HIDDEN_SIZE, output_size=RNN_OUTPUT_SIZE)  GRU
+        # self.rnn = nn.RNN(input_size=RNN_INPUT_SIZE,
+        #                   hidden_size=RNN_HIDDEN_SIZE,
+        #                   num_layers=RNN_NUM_LAYERS,
+        #                   batch_first=True)
+        self.rnn = nn.GRU(input_size=RNN_INPUT_SIZE,
+                          hidden_size=RNN_HIDDEN_SIZE,
+                          num_layers=RNN_NUM_LAYERS,
+                          batch_first=True)
+        # x -> (batch_size, seq_len, input_size)
+        self.fc = nn.Linear(RNN_HIDDEN_SIZE, RNN_OUTPUT_SIZE)
+        self.rnn.double()
+        self.fc.double()
         self.counter = 0
 
-    def forward(self, input_item, hidden):
-        output, hidden = self.net(input_item, hidden)
-        return output, hidden
+    def forward(self, x):
+        h0 = torch.zeros((1 * RNN_NUM_LAYERS, x.size(0), RNN_HIDDEN_SIZE))
+        h0 = torch.Tensor(h0).double()
+
+        output, hidden = self.rnn(x, h0)
+        # out -> (batch_size, seq_len, hidden_size)
+        # out ()
+        output = output[:, -1, :]
+        output = self.fc(output)
+        return output
 
     def training_step(self, batch, batch_idx):
-        hidden = torch.zeros(RNN_HIDDEN_SIZE)
-        y, output = 0, 0
-        # output, next_hidden = rnn(input, hidden)
-        input_batch, y_batch = batch
-        for input_item_indx, input_item in enumerate(input_batch):
-            output, hidden = self(input_item, hidden)
-            y = y_batch[input_item_indx]
-        y_hat = output.view(-1)
-        loss = F.mse_loss(y_hat, y)  # F.mse_loss(y_hat, y.float())
+        x_batch, y_batch = batch
+        y_hat = self(x_batch)
+        y_real = y_batch[-1]
+        loss = F.mse_loss(y_hat, y_real)  # F.mse_loss(y_hat, y.float())
 
         self.log('train loss', loss)
 
