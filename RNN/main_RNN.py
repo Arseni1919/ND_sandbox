@@ -10,7 +10,7 @@ if __name__ == '__main__':
     alg_data_module = ALGDataModule(alg_dataset)
 
     trainer = pl.Trainer(logger=NeptuneLogger(project_name="1919ars/NA-sandbox"),
-                         max_epochs=30,
+                         max_epochs=MAX_EPOCHS,
                          callbacks=[ALGCallback()])
     trainer.fit(model=alg_lit_module, datamodule=alg_data_module)
 
