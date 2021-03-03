@@ -8,6 +8,7 @@ if __name__ == '__main__':
 
     alg_dataset = ALGDataset(y_func)
     alg_data_module = ALGDataModule(alg_dataset)
+    alg_lit_module = ALGLightningModule()
 
     trainer = pl.Trainer(logger=NeptuneLogger(project_name="1919ars/NA-sandbox"),
                          max_epochs=MAX_EPOCHS,

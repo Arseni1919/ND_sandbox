@@ -10,7 +10,8 @@ def y_func(i):
     n = 10.0
     x_num = np.sin(i/n)
     y_num = np.cos(i/n)
-    z_num = x_num / 2 + y_num / 4 - x_num * y_num
+    # z_num = x_num / 2 + y_num / 4 - x_num * y_num
+    z_num = np.sin(i) + np.cos(i/2) + np.sin(i/3) + np.cos(i/4) + np.sin(i/5)
     # z_num = 0.2 * np.sin(x_num) + 0.1 * y_num ** 2 + x_num/2
     return x_num, y_num, z_num
 

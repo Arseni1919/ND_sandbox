@@ -47,7 +47,7 @@ class ALGLightningModule(pl.LightningModule):
     def forward(self, x):
         h0 = torch.zeros((1 * RNN_NUM_LAYERS, x.size(0), RNN_HIDDEN_SIZE))
         h0 = torch.Tensor(h0).double()
-
+        x = torch.unsqueeze(x, 2)
         output, hidden = self.rnn(x, h0)
         # out -> (batch_size, seq_len, hidden_size)
         # out ()
@@ -58,8 +58,9 @@ class ALGLightningModule(pl.LightningModule):
     def training_step(self, batch, batch_idx):
         x_batch, y_batch = batch
         y_hat = self(x_batch)
-        y_real = y_batch[-1]
-        loss = F.mse_loss(y_hat, y_real)  # F.mse_loss(y_hat, y.float())
+        y_hat = torch.squeeze(y_hat)
+        # y_real = y_batch[-1]
+        loss = F.mse_loss(y_hat, y_batch)  # F.mse_loss(y_hat, y.float())
 
         self.log('train loss', loss)
 
@@ -70,8 +71,5 @@ class ALGLightningModule(pl.LightningModule):
 
     # def train_dataloader(self):
     #     return DataLoader(alg_dataset, batch_size=64)
-
-
-alg_lit_module = ALGLightningModule()
 
 
